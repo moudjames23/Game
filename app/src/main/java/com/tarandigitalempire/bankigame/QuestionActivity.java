@@ -86,7 +86,7 @@ public class QuestionActivity extends AppCompatActivity {
                         int id = jsonObject.getInt("id");
                         int id_sousth = jsonObject.getInt("id_soustheme");
                         String question = jsonObject.getString("question");
-                        final String answer = jsonObject.getString("reponse");
+                        String answer = jsonObject.getString("reponse");
                         String option1 = jsonObject.getString("option1");
                         String option2 = jsonObject.getString("option2");
                         String option3 = jsonObject.getString("option3");
@@ -109,6 +109,6 @@ public class QuestionActivity extends AppCompatActivity {
 
         Volley.newRequestQueue(this).add(stringRequest);
     }
-    
+
 }
 
