@@ -34,30 +34,42 @@ public class QuestionActivity extends AppCompatActivity {
     private int id_soustheme;
     private String nameSoustheme;
     private TextView inputQuestion, inputScore, countQuestion, timer;
-    private RadioGroup rgOption;
-    private RadioButton optionOne, optionTwo, optionThree;
-    private Button btnNext;
+    private Button optionOne, optionTwo, optionThree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
-        rgOption = findViewById(R.id.radioGroupOption);
         optionOne = findViewById(R.id.rb_option1);
         optionTwo = findViewById(R.id.rb_option2);
         optionThree = findViewById(R.id.rb_option3);
         inputQuestion = findViewById(R.id.inputQuestion);
-        btnNext = findViewById(R.id.btn_next);
 
         Intent intent = getIntent();
         id_soustheme = intent.getExtras().getInt("ID_SOUSTHEME");
         nameSoustheme = intent.getExtras().getString("NAME_SOUSTHEME");
 
         questionsList = new ArrayList<>();
-        Toast.makeText(getApplicationContext(), Constant.QUESTIONS_URL+id_soustheme, Toast.LENGTH_SHORT).show();
-
         loadQuestionsHttp();
+        Log.e("LISTE: ", ""+questionsList.size());
+
+        String tabQuestion[] = new String[questionsList.size()];
+        String tabOption[][] = new String[questionsList.size()][3];
+        String tabReponse[] = new String[questionsList.size()];
+
+        Questions quest;
+        for (int i = 0; i < questionsList.size(); i++) {
+
+            quest = questionsList.get(i);
+
+            tabQuestion[i] = quest.getQuestion();
+            tabOption[i][0] = quest.getOption1();
+            tabOption[i][1] = quest.getOption2();
+            tabOption[i][2] = quest.getOption2();
+            tabReponse[i] = quest.getReponse();
+
+        }
     }
 
     public void loadQuestionsHttp(){
@@ -97,5 +109,6 @@ public class QuestionActivity extends AppCompatActivity {
 
         Volley.newRequestQueue(this).add(stringRequest);
     }
+    
 }
 
