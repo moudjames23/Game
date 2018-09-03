@@ -95,6 +95,9 @@ public class QuestionActivity extends AppCompatActivity {
                         Questions questions = new Questions(id, id_sousth, question, answer, option1, option2, option3, created_at);
                         questionsList.add(questions);
                     }
+                    
+                    updateUI();
+                    
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -108,6 +111,20 @@ public class QuestionActivity extends AppCompatActivity {
         });
 
         Volley.newRequestQueue(this).add(stringRequest);
+    }
+    
+    private void updateUI()
+    {
+        //Tu vérifies si ta liste n'est pas nulle et qu'elle contient bien des données
+        if(questionsList != null && questionsList.size() != 0)
+        {
+            // Tu recupères le premier element de la liste
+            Questions qst = questionsList.get(0);
+            
+            //tu mets à jour ton interface en l'affectant les informations 
+            //putQuestion.set(qst.getXXX);
+               
+        }
     }
 
 }
